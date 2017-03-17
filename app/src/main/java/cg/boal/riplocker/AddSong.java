@@ -3,11 +3,14 @@ package cg.boal.riplocker;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -18,7 +21,7 @@ import android.view.ViewGroup;
  * Use the {@link AddSong#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddSong extends Fragment {
+public class AddSong extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,6 +32,10 @@ public class AddSong extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private Button submit;
+    private EditText txtTitle;
+    private EditText txtArtist;
 
     public AddSong() {
         // Required empty public constructor
@@ -71,10 +78,22 @@ public class AddSong extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_song, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_add_song, container, false);
+        submit = (Button) view.findViewById(R.id.btnAddSong);
+        txtTitle = (EditText) view.findViewById(R.id.txtTitle);
+        txtArtist = (EditText) view.findViewById(R.id.txtArtist);
+        submit.setOnClickListener(this);
+        return view;
     }
 
+    @Override public void onClick(View v) {
+        String title = this.txtTitle.getText().toString();
+        String artist = this.txtArtist.getText().toString();
+        DatabaseHelper db = new DatabaseHelper(getActivity());
+        db.InsertSong(title, artist);
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

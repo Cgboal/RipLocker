@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_playlists) {
             c = Playlists.class;
         } else if (id == R.id.nav_import) {
-            c = Import.class;
+            c = AddSong.class;
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

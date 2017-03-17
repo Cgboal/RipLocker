@@ -5,9 +5,32 @@
     tools:context="cg.boal.riplocker.AddSong">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Song Title"
+            android:ems="10"
+            android:id="@+id/txtTitle" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Artist"
+            android:ems="10"
+            android:id="@+id/txtArtist" />
+
+        <Button
+            android:text="Add Song"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAddSong" />
+    </LinearLayout>
 </FrameLayout>
