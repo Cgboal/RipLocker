@@ -86,15 +86,11 @@ public class MainActivity extends AppCompatActivity
         Fragment frag = null;
         if (id == R.id.nav_playlists) {
             c = Playlists.class;
-        } else if (id == R.id.nav_import) {
+        } else if (id == R.id.nav_add_song) {
             c = AddSong.class;
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_add_playlist) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_import) {
 
         }
 

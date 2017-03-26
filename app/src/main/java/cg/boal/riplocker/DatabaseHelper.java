@@ -19,8 +19,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COULUMN_TITLE = "title";
     private static final String COLUMN_ARTIST = "artist";
 
-    private static final String TABLE_CREATE = "CREATE TABLE songs (id integer primary key not null, " +
+    private static final String TABLE_CREATE_SONGS = "CREATE TABLE songs (id integer primary key not null, " +
             "title text not null, artist text not null);";
+
+    private static final String TABLE_CREATE_PLAYLISTS = "CREATE TABLE playlists (id integer primary key not null, " +
+            "title text not null";
+
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +33,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CREATE);
+        db.execSQL(TABLE_CREATE_SONGS);
+        db.execSQL(TABLE_CREATE_PLAYLISTS);
         this.db = db;
     }
 
@@ -36,7 +42,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String insertSQL = "INSERT INTO songs (title, artist) VALUES ('" + title + "', '" + artist + "');";
         db.execSQL(insertSQL);
-        System.out.println("YAY");
+    }
+
+    public void InsertPlaylist(String title) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String insertSQL = "INSERT INTO playlists (title) VALUES('" + title + ");";
+        db.execSQL(insertSQL);
     }
 
     @Override
