@@ -20,7 +20,9 @@ import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity
         implements AddSong.OnFragmentInteractionListener, ListSongs.OnFragmentInteractionListener,
-        Playlists.OnFragmentInteractionListener, Import.OnFragmentInteractionListener,
+        Playlists.OnFragmentInteractionListener, Playlists.OnPlaylistSelectedListener,
+        AddPlaylist.OnFragmentInteractionListener,
+        Import.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frame;
@@ -45,6 +47,11 @@ public class MainActivity extends AppCompatActivity
         Fragment playlists = new Playlists();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fr, playlists).commit();
+    }
+
+    public void onPlaylistSelected(int id) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fr, ListSongs.newInstance(id)).commit();
     }
 
     @Override
@@ -89,9 +96,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_add_song) {
             c = AddSong.class;
         } else if (id == R.id.nav_add_playlist) {
-
+            c = AddPlaylist.class;
         } else if (id == R.id.nav_import) {
-
+            c = Import.class;
         }
 
         try {

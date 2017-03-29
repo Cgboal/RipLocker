@@ -5,4 +5,21 @@ package cg.boal.riplocker;
  */
 
 public class Song {
+
+    private int id;
+    private String title, artist;
+
+    public Song(int id, String title, String artist) {
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+    }
+
+    @Override
+    public String toString(){
+        return this.title;
+    }
+
+    public String getTitle() {return title;}
+    public String getArtist() {return artist;}
 }

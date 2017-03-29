@@ -75,12 +75,14 @@ public class AddPlaylist extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_add_playlist, container, false);
         pName = (TextView) v.findViewById(R.id.txtPName);
         submit = (Button) v.findViewById(R.id.btnAdd);
+        submit.setOnClickListener(this);
         return v;
     }
 
     @Override
     public void onClick(View v) {
-
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        db.InsertPlaylist(this.pName.getText().toString());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

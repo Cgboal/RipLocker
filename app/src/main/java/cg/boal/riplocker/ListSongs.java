@@ -21,12 +21,12 @@ import android.view.ViewGroup;
 public class ListSongs extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM1 = "Playlist_Id";
+
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private int pId;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -37,8 +37,10 @@ public class ListSongs extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        getActivity().setTitle("Playlist Name");
+        Bundle args = getArguments();
+        int id = args.getInt("pId");
+        Integer pId = new Integer(id);
+        getActivity().setTitle(pId.toString());
     }
 
 
@@ -47,15 +49,14 @@ public class ListSongs extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment ListSongs.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListSongs newInstance(String param1, String param2) {
+    public static ListSongs newInstance(int param1) {
         ListSongs fragment = new ListSongs();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_PARAM1, param1);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,8 +65,7 @@ public class ListSongs extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            pId = getArguments().getInt(ARG_PARAM1);
         }
     }
 

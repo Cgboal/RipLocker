@@ -5,9 +5,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.attr.fragment;
 
 
 /**
@@ -18,7 +27,8 @@ import android.view.ViewGroup;
  * Use the {@link Playlists#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Playlists extends Fragment {
+public class Playlists extends Fragment implements AdapterView.OnItemClickListener {
+    OnPlaylistSelectedListener mCallback;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +37,8 @@ public class Playlists extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView pLister;
 
     private OnFragmentInteractionListener mListener;
 
@@ -39,6 +51,10 @@ public class Playlists extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("My Lists");
+    }
+
+    public interface OnPlaylistSelectedListener {
+        public void onPlaylistSelected(int id);
     }
 
     /**
@@ -72,7 +88,25 @@ public class Playlists extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_playlists, container, false);
+        View view =  inflater.inflate(R.layout.fragment_playlists, container, false);
+        pLister = (ListView) view.findViewById(R.id.lstPlayLists);
+
+        DatabaseHelper db = new DatabaseHelper(getContext());
+
+        List<Playlist> playlists = db.GetPlaylists();
+
+        PlaylistAdapter adapter = new PlaylistAdapter(getContext(), playlists);
+
+        pLister.setAdapter(adapter);
+        pLister.setOnItemClickListener(this);
+        return view;
+    }
+
+    public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+        Playlist pId = (Playlist) arg0.getItemAtPosition(position);
+        mCallback.onPlaylistSelected(pId.getId());
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,6 +124,12 @@ public class Playlists extends Fragment {
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
+        }
+        try {
+            mCallback = (OnPlaylistSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnHeadlineSelectedListener");
         }
     }
 
