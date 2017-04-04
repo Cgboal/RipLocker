@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.util.List;
 
 
 /**
@@ -36,6 +39,10 @@ public class AddSong extends Fragment implements View.OnClickListener {
     private Button submit;
     private EditText txtTitle;
     private EditText txtArtist;
+    private Spinner pListSpinner;
+    private List<Playlist> playlists;
+
+
 
     public AddSong() {
         // Required empty public constructor
@@ -83,6 +90,15 @@ public class AddSong extends Fragment implements View.OnClickListener {
         submit = (Button) view.findViewById(R.id.btnAddSong);
         txtTitle = (EditText) view.findViewById(R.id.txtTitle);
         txtArtist = (EditText) view.findViewById(R.id.txtArtist);
+        pListSpinner = (Spinner) view.findViewById(R.id.spnPlaylists);
+        DatabaseHelper db = new DatabaseHelper(getContext());
+
+        playlists = db.GetPlaylists();
+
+        PlaylistAdapter adapter = new PlaylistAdapter(getContext(), playlists);
+
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        pListSpinner.setAdapter(adapter);
         submit.setOnClickListener(this);
         return view;
     }
@@ -90,8 +106,10 @@ public class AddSong extends Fragment implements View.OnClickListener {
     @Override public void onClick(View v) {
         String title = this.txtTitle.getText().toString();
         String artist = this.txtArtist.getText().toString();
+        int pId = playlists.get(pListSpinner.getSelectedItemPosition()).getId();
         DatabaseHelper db = new DatabaseHelper(getActivity());
-        db.InsertSong(title, artist);
+        System.out.println(pId);
+        db.InsertSong(title, artist, pId);
 
     }
     // TODO: Rename method, update argument and hook method into UI event

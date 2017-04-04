@@ -18,10 +18,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "songs.db";
-    private static final String TABLE_NAME = "songs";
-    private static final String COLUMN_ID = "id";
-    private static final String COULUMN_TITLE = "title";
-    private static final String COLUMN_ARTIST = "artist";
 
     private static final String TABLE_CREATE_SONGS = "CREATE TABLE songs (id integer primary key not null, " +
             "title text not null, artist text not null, playlist integer not null);";
@@ -42,16 +38,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.db = db;
     }
 
-    public void InsertSong(String title, String artist) {
+    public void InsertSong(String title, String artist, int pList) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String insertSQL = "INSERT INTO songs (title, artist) VALUES ('" + title + "', '" + artist + "');";
-        db.execSQL(insertSQL);
+        String insertSQL = "INSERT INTO songs (title, artist, playlist) VALUES ('" + title + "', '" + artist + "', " + pList + ");";
+        Thread t = new Thread(new runSQL(insertSQL, db));
+        t.start();
     }
 
     public void InsertPlaylist(String title) {
         SQLiteDatabase db = this.getReadableDatabase();
         String insertSQL = "INSERT INTO playlists (title) VALUES('" + title + "');";
-        db.execSQL(insertSQL);
+        Thread t = new Thread(new runSQL(insertSQL, db));
+        t.start();
     }
 
     public List<Playlist> GetPlaylists(){
@@ -92,9 +90,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
 
+}
+
+class runSQL implements Runnable {
+    private String SQL;
+    private SQLiteDatabase db;
+    runSQL(String SQL, SQLiteDatabase db) {
+        this.SQL = SQL;
+        this.db = db;
+    }
+    public void run() {
+        db.execSQL(SQL);
+    }
 }
 

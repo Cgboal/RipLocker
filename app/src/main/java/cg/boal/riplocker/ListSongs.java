@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.List;
 
 
 /**
@@ -22,10 +25,12 @@ public class ListSongs extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "Playlist_Id";
-
+    private static final String ARG_PARAM2 = "Playlist_Name";
 
     // TODO: Rename and change types of parameters
     private int pId;
+    private String pName;
+    private ListView lstSongs;
 
 
     private OnFragmentInteractionListener mListener;
@@ -38,9 +43,7 @@ public class ListSongs extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Bundle args = getArguments();
-        int id = args.getInt("pId");
-        Integer pId = new Integer(id);
-        getActivity().setTitle(pId.toString());
+        getActivity().setTitle(args.getString(ARG_PARAM2));
     }
 
 
@@ -52,10 +55,11 @@ public class ListSongs extends Fragment {
      * @return A new instance of fragment ListSongs.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListSongs newInstance(int param1) {
+    public static ListSongs newInstance(int param1, String pTitle) {
         ListSongs fragment = new ListSongs();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, pTitle);
 
         fragment.setArguments(args);
         return fragment;
@@ -66,6 +70,7 @@ public class ListSongs extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             pId = getArguments().getInt(ARG_PARAM1);
+            pName = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -73,7 +78,13 @@ public class ListSongs extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_songs, container, false);
+        View view  = inflater.inflate(R.layout.fragment_list_songs, container, false);
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        List<Song> songs = db.GetSongs(pId);
+        SongAdapter songAdapter = new SongAdapter(getContext(), songs);
+        lstSongs = (ListView) view.findViewById(R.id.lstSongs);
+        lstSongs.setAdapter(songAdapter);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.fr, playlists).commit();
     }
 
-    public void onPlaylistSelected(int id) {
+    public void onPlaylistSelected(int id, String title) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fr, ListSongs.newInstance(id)).commit();
+        ft.replace(R.id.fr, ListSongs.newInstance(id, title)).commit();
     }
 
     @Override

@@ -1,8 +1,6 @@
 package cg.boal.riplocker;
 
-import android.app.Activity;
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +10,15 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by Cgboal on 28/03/2017.
+ * Created by Cgboal on 29/03/2017.
  */
 
-public class PlaylistAdapter extends ArrayAdapter<Playlist> {
+public class SongAdapter extends ArrayAdapter<Song> {
 
     private Context context;
-    private List<Playlist> data = null;
+    private List<Song> data = null;
 
-    public PlaylistAdapter(Context context, List<Playlist> data) {
+    public SongAdapter(Context context, List<Song> data) {
         super(context, 0, data);
         this.context = context;
         this.data = data;
@@ -31,13 +29,13 @@ public class PlaylistAdapter extends ArrayAdapter<Playlist> {
         View row = convertView;
 
         if (row == null) {
-            row = LayoutInflater.from(getContext()).inflate(R.layout.playlist_item, parent, false);
+            row = LayoutInflater.from(getContext()).inflate(R.layout.song_item, parent, false);
         }
-        TextView txtView = (TextView) row.findViewById(R.id.tvName);
-        Playlist p = data.get(position);
-        txtView.setText(p.getName());
+        TextView txtTitle = (TextView) row.findViewById(R.id.txtTitle);
+        TextView txtArtist = (TextView) row.findViewById(R.id.txtArtist);
+        Song s = data.get(position);
+        txtTitle.setText(s.getTitle());
+        txtArtist.setText(s.getArtist());
         return row;
-
     }
-
 }
