@@ -8,12 +8,12 @@
         "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/res/layout/abc_screen_toolbar.xml"
     },
     {
-        "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
-        "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/res/layout/notification_template_part_chronometer.xml"
-    },
-    {
         "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
         "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/res/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
@@ -62,6 +62,10 @@
     {
         "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
         "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/layout/fragment_export.xml",
+        "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/src/main/res/layout/fragment_export.xml"
     },
     {
         "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",

@@ -3,7 +3,6 @@ package cg.boal.riplocker;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Import.OnFragmentInteractionListener} interface
+ * {@link Export.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Import#newInstance} factory method to
+ * Use the {@link Export#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Import extends Fragment {
+public class Export extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,17 +29,9 @@ public class Import extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Import() {
+    public Export() {
         // Required empty public constructor
     }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        getActivity().setTitle("Import");
-    }
-
 
     /**
      * Use this factory method to create a new instance of
@@ -48,11 +39,11 @@ public class Import extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Import.
+     * @return A new instance of fragment Export.
      */
     // TODO: Rename and change types and number of parameters
-    public static Import newInstance(String param1, String param2) {
-        Import fragment = new Import();
+    public static Export newInstance(String param1, String param2) {
+        Export fragment = new Export();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,9 +64,7 @@ public class Import extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =inflater.inflate(R.layout.fragment_import, container, false);
-
-        return v;
+        return inflater.inflate(R.layout.fragment_export, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
