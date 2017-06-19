@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
         implements AddSong.OnFragmentInteractionListener, ListSongs.OnFragmentInteractionListener,
         Playlists.OnFragmentInteractionListener, Playlists.OnPlaylistSelectedListener,
         AddPlaylist.OnFragmentInteractionListener,
-        Import.OnFragmentInteractionListener,
+        Import.OnFragmentInteractionListener, Export.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frame;
@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.fr, playlists).commit();
     }
 
-    public void onPlaylistSelected(int id) {
+    public void onPlaylistSelected(int id, String title) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fr, ListSongs.newInstance(id)).commit();
+        ft.replace(R.id.fr, ListSongs.newInstance(id, title)).commit();
     }
 
     @Override
@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity
             c = AddPlaylist.class;
         } else if (id == R.id.nav_import) {
             c = Import.class;
+        } else if (id == R.id.nav_export) {
+            c = Export.class;
         }
 
         try {

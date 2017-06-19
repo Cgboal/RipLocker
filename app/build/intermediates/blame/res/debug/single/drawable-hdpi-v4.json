@@ -144,12 +144,12 @@
         "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/res/drawable-hdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png",
-        "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png"
-    },
-    {
         "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/design_ic_visibility_off.png",
         "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/res/drawable-hdpi-v4/design_ic_visibility_off.png"
+    },
+    {
+        "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+        "source": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png"
     },
     {
         "merged": "/Users/Cgboal/AndroidStudioProjects/RipLocker/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_ic_star_black_48dp.png",

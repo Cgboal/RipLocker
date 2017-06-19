@@ -50,11 +50,11 @@ public class Playlists extends Fragment implements AdapterView.OnItemClickListen
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("My Lists");
+        getActivity().setTitle("My Playlists");
     }
 
     public interface OnPlaylistSelectedListener {
-        public void onPlaylistSelected(int id);
+        public void onPlaylistSelected(int id, String title);
     }
 
     /**
@@ -100,11 +100,11 @@ public class Playlists extends Fragment implements AdapterView.OnItemClickListen
         pLister.setAdapter(adapter);
         pLister.setOnItemClickListener(this);
         return view;
-    }
+}
 
     public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
         Playlist pId = (Playlist) arg0.getItemAtPosition(position);
-        mCallback.onPlaylistSelected(pId.getId());
+        mCallback.onPlaylistSelected(pId.getId(), pId.getName());
 
 
     }
@@ -115,7 +115,7 @@ public class Playlists extends Fragment implements AdapterView.OnItemClickListen
             mListener.onFragmentInteraction(uri);
         }
     }
-
+    //.*\n.*:.*
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

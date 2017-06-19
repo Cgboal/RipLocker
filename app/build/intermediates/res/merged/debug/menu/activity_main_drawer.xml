@@ -4,20 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_playlists"
-            android:icon="@drawable/ic_menu_camera"
             android:title="Playlists" />
         <item
             android:id="@+id/nav_add_song"
-            android:icon="@drawable/ic_menu_gallery"
             android:title="Add Song" />
         <item
             android:id="@+id/nav_add_playlist"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="Add Playlist" />
         <item
             android:id="@+id/nav_import"
-            android:icon="@drawable/ic_menu_manage"
             android:title="Import" />
+        <item
+            android:id="@+id/nav_export"
+            android:title="Export"/>
     </group>
 
 

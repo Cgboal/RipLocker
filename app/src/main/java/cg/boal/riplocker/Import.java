@@ -3,11 +3,16 @@ package cg.boal.riplocker;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.List;
 
 
 /**
@@ -18,7 +23,7 @@ import android.view.ViewGroup;
  * Use the {@link Import#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Import extends Fragment {
+public class Import extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,6 +34,12 @@ public class Import extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private Button btnImport;
+    private EditText txtImport;
+    private DatabaseHelper db;
+    private FileHelper fh;
+
 
     public Import() {
         // Required empty public constructor
@@ -74,10 +85,26 @@ public class Import extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =inflater.inflate(R.layout.fragment_import, container, false);
-
+        txtImport = (EditText) v.findViewById(R.id.txtImport);
+        btnImport = (Button) v.findViewById(R.id.btnImport);
+        db = new DatabaseHelper(getContext());
+        btnImport.setOnClickListener(this);
         return v;
     }
 
+
+    public void onClick(View v) {
+        FileHelper fh = new FileHelper(getContext(), txtImport.getText().toString());
+        Playlist p = fh.getPlaylist();
+        List<Song> songs = fh.getSongs();
+        if (p != null && songs != null) {
+            db.InsertPlaylist(p.getName());
+            for (int i = 0; i < songs.size(); i++) {
+                db.InsertSong(songs.get(i).getTitle(), songs.get(i).getArtist(), db.getMaxPlaylist() + 1);
+            }
+        }
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

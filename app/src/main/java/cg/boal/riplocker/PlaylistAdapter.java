@@ -17,8 +17,8 @@ import java.util.List;
 
 public class PlaylistAdapter extends ArrayAdapter<Playlist> {
 
-    Context context;
-    List<Playlist> data = null;
+    private Context context;
+    private List<Playlist> data = null;
 
     public PlaylistAdapter(Context context, List<Playlist> data) {
         super(context, 0, data);

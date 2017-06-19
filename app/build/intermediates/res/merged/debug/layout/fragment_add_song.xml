@@ -9,23 +9,36 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Song Title"
             android:ems="10"
-            android:id="@+id/txtTitle" />
+            android:id="@+id/txtTitle"
+            android:hint="Song title" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Artist"
             android:ems="10"
-            android:id="@+id/txtArtist" />
+            android:id="@+id/txtArtist"
+            android:hint="Artist" />
+
+        <TextView
+            android:text="Select Playlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.03"
+            android:id="@+id/spnPlaylists" />
 
         <Button
             android:text="Add Song"

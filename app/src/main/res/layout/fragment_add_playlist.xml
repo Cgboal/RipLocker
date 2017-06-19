@@ -15,9 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Playlist Name"
             android:ems="10"
-            android:id="@+id/txtPName" />
+            android:id="@+id/txtPName"
+            android:hint="Playlist Name" />
 
         <Button
             android:text="Add Playlist"
